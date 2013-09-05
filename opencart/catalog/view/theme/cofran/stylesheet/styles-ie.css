@@ -1,0 +1,48 @@
+﻿.login-page .content { _height:150px; }
+.error-msg,
+.success-msg,
+.note-msg,
+.notice-msg { _height:24px; }
+.opc li.section { vertical-align:top; }
+
+#nav li,
+#nav li a { zoom:1; }
+#nav li { vertical-align:top; }
+
+#nav li.over ul.shown-sub { left:0; }
+#nav li.over li ul.shown-sub { left:100px; }
+
+input.radio { width:13px; height:13px; }
+input.checkbox { width:13px; height:13px; }
+
+.clearer { display:block; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+
+.header,
+#nav,
+.main,
+.footer,
+.col-main,
+.col2-set,
+.messages li,
+.block-related li,
+.block-related .item,
+.block .actions,
+.title-buttons,
+.pager,
+.sorter,
+.products-list .item,
+.add-to-cart,
+.product-essential,
+.product-view .product-img-box .more-views ul,
+.product-options .options-list li,
+.product-options-bottom,
+.product-review,
+.cart,
+.opc .step-title,
+.opc .step,
+.sp-methods,
+.checkout-progress,
+.form-list li,
+.group-select li,
+.buttons-set,
+.buttons-set2 { zoom:1; }
