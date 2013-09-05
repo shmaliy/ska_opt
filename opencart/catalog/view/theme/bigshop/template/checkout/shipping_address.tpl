@@ -87,7 +87,7 @@ $('#shipping-address input[name=\'shipping_address\']').live('change', function(
 <script type="text/javascript"><!--
 $('#shipping-address select[name=\'country_id\']').bind('change', function() {
 	$.ajax({
-		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
+		url: 'index.php?route=checkout/checkout/country&country_id=220',
 		dataType: 'json',
 		beforeSend: function() {
 			$('#shipping-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');

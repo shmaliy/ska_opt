@@ -17,7 +17,7 @@
   <label for="payment-address-new"><?php echo $text_address_new; ?></label>
 </p>
 <?php } ?>
-<div id="payment-new" style="display: <?php echo ($addresses ? 'none' : 'block'); ?>;">
+<div id="payment-new" style="display: <?php echo ($addresses) ? 'none' : 'block'; ?>;">
   <table class="form">
     <tr>
       <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
@@ -105,7 +105,7 @@ $('#payment-address input[name=\'payment_address\']').live('change', function() 
 <script type="text/javascript"><!--
 $('#payment-address select[name=\'country_id\']').bind('change', function() {
 	$.ajax({
-		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
+		url: 'index.php?route=checkout/checkout/country&country_id=220',
 		dataType: 'json',
 		beforeSend: function() {
 			$('#payment-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
@@ -114,7 +114,7 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 			$('.wait').remove();
 		},			
 		success: function(json) {
-			if (json['postcode_required'] == '1') {
+                        if (json['postcode_required'] == '1') {
 				$('#payment-postcode-required').show();
 			} else {
 				$('#payment-postcode-required').hide();

@@ -16,17 +16,14 @@
   <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" />
   <br />
   <br />
-  <?php echo $entry_fax; ?><br />
-  <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
-  <br />
-  <br />
 </div>
 <div class="right">
   <h2><?php echo $text_your_address; ?></h2>
-  <?php echo $entry_company; ?><br />
-  <input type="text" name="company" value="<?php echo $company; ?>" class="large-field" />
-  <br />
-  <br />
+  <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
+    <input type="hidden" name="company" value="<?php echo $company; ?>" />
+    <input type="hidden" name="address_1" value="Somewhere in DP" />
+    <input type="hidden" name="address_2" value="" />
+    <input type="hidden" name="fax" value="" />
   <div style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;"> <?php echo $entry_customer_group; ?><br />
     <?php foreach ($customer_groups as $customer_group) { ?>
     <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
@@ -41,47 +38,28 @@
     <?php } ?>
     <br />
   </div>
-  <div id="company-id-display"><span id="company-id-required" class="required">*</span> <?php echo $entry_company_id; ?><br />
-    <input type="text" name="company_id" value="<?php echo $company_id; ?>" class="large-field" />
-    <br />
-    <br />
-  </div>
   <div id="tax-id-display"><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?><br />
     <input type="text" name="tax_id" value="<?php echo $tax_id; ?>" class="large-field" />
     <br />
     <br />
   </div>
-  <span class="required">*</span> <?php echo $entry_address_1; ?><br />
-  <input type="text" name="address_1" value="<?php echo $address_1; ?>" class="large-field" />
-  <br />
-  <br />
-  <?php echo $entry_address_2; ?><br />
-  <input type="text" name="address_2" value="<?php echo $address_2; ?>" class="large-field" />
-  <br />
-  <br />
   <span class="required">*</span> <?php echo $entry_city; ?><br />
-  <input type="text" name="city" value="<?php echo $city; ?>" class="large-field" />
+  <input type="text" name="city" value="Днепропетровск" disabled="disabled" class="large-field" />
   <br />
   <br />
   <span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?><br />
-  <input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" />
+  <input type="text" name="postcode" value="49000" disabled="disabled" class="large-field" />
   <br />
   <br />
   <span class="required">*</span> <?php echo $entry_country; ?><br />
-  <select name="country_id" class="large-field">
-    <option value=""><?php echo $text_select; ?></option>
-    <?php foreach ($countries as $country) { ?>
-    <?php if ($country['country_id'] == $country_id) { ?>
-    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-    <?php } else { ?>
-    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-    <?php } ?>
-    <?php } ?>
+  <select name="country_id" class="large-field" disabled>
+    <option value="220" selected>Украина</option>
   </select>
   <br />
   <br />
   <span class="required">*</span> <?php echo $entry_zone; ?><br />
-  <select name="zone_id" class="large-field">
+  <select name="zone_id" class="large-field" disabled>
+      <option value="3484" selected>Днепропетровская</option>
   </select>
   <br />
   <br />
@@ -146,47 +124,3 @@ $('#payment-address input[name=\'customer_group_id\']:checked').live('change', f
 
 $('#payment-address input[name=\'customer_group_id\']:checked').trigger('change');
 //--></script> 
-<script type="text/javascript"><!--
-$('#payment-address select[name=\'country_id\']').bind('change', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
-		dataType: 'json',
-		beforeSend: function() {
-			$('#payment-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
-		},
-		complete: function() {
-			$('.wait').remove();
-		},			
-		success: function(json) {
-			if (json['postcode_required'] == '1') {
-				$('#payment-postcode-required').show();
-			} else {
-				$('#payment-postcode-required').hide();
-			}
-			
-			html = '<option value=""><?php echo $text_select; ?></option>';
-			
-			if (json['zone'] != '') {
-				for (i = 0; i < json['zone'].length; i++) {
-        			html += '<option value="' + json['zone'][i]['zone_id'] + '"';
-	    			
-					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-	      				html += ' selected="selected"';
-	    			}
-	
-	    			html += '>' + json['zone'][i]['name'] + '</option>';
-				}
-			} else {
-				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
-			}
-			
-			$('#payment-address select[name=\'zone_id\']').html(html);
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
-$('#payment-address select[name=\'country_id\']').trigger('change');
-//--></script>

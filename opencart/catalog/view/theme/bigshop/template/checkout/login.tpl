@@ -1,20 +1,26 @@
+<script language="Javascript" type="text/javascript">
+ /*$(document).ready(function(){
+ $('#button-account').trigger('click');
+ });*/
+</script>
 <div class="left">
   <h2><?php echo $text_new_customer; ?></h2>
   <p><?php echo $text_checkout; ?></p>
   <label for="register">
     <?php if ($account == 'register') { ?>
-    <input type="radio" name="account" value="register" id="register" checked="checked" />
-    <?php } else { ?>
-    <input type="radio" name="account" value="register" id="register" />
-    <?php } ?>
-    <b><?php echo $text_register; ?></b></label>
-  <br />
-  <?php if ($guest_checkout) { ?>
-  <label for="guest">
-    <?php if ($account == 'guest') { ?>
-    <input type="radio" name="account" value="guest" id="guest" checked="checked" />
-    <?php } else { ?>
-    <input type="radio" name="account" value="guest" id="guest" />
+   <input type="radio" name="account" value="register" id="register" />
+ <?php } else { ?>
+ <input type="radio" name="account" value="register" id="register" />
+ <?php } ?>
+ <b><?php echo $text_register; ?></b></label>
+ <br />
+ <?php if ($guest_checkout) { ?>
+ <label for="guest">
+ <?php if ($account == 'guest') { ?>
+ <input type="radio" name="account" value="guest" id="guest" checked="checked" />
+ <?php } else { ?>
+ <input type="radio" name="account" value="guest" id="guest" checked="checked" />
+   
     <?php } ?>
     <b><?php echo $text_guest; ?></b></label>
   <br />

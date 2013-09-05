@@ -1,3 +1,8 @@
+<script language="Javascript" type="text/javascript">
+ $(document).ready(function(){
+ $('#button-payment-method').trigger('click');
+ });
+</script>
 <?php if ($error_warning) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
@@ -28,7 +33,7 @@
     <?php if ($agree) { ?>
     <input type="checkbox" name="agree" value="1" checked="checked" />
     <?php } else { ?>
-    <input type="checkbox" name="agree" value="1" />
+    <input type="checkbox" name="agree" value="1" checked="checked" />
     <?php } ?>
     <input type="button" value="<?php echo $button_continue; ?>" id="button-payment-method" class="button" />
   </div>

@@ -62,7 +62,9 @@ $(document).ready(function() {
 		url: 'index.php?route=checkout/login',
 		dataType: 'html',
 		success: function(html) {
-			$('#checkout .checkout-content').html(html);
+                        var n_data = $.parseJSON(html);
+                        
+			$('#checkout .checkout-content').html(n_data['output']);
 				
 			$('#checkout .checkout-content').slideDown('slow');
 		},
@@ -77,7 +79,9 @@ $(document).ready(function() {
 		url: 'index.php?route=checkout/payment_address',
 		dataType: 'html',
 		success: function(html) {
-			$('#payment-address .checkout-content').html(html);
+			var n_data = $.parseJSON(html);
+                        
+			$('#checkout .checkout-content').html(n_data['output']);
 				
 			$('#payment-address .checkout-content').slideDown('slow');
 		},
@@ -157,7 +161,7 @@ $('#button-register').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/register/validate',
 		type: 'post',
-		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
+		data: $('#payment-address input[type=\'hidden\'], #payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-register').attr('disabled', true);
@@ -384,7 +388,8 @@ $('#button-payment-address').live('click', function() {
 				}	
 														
 				if (json['error']['address_1']) {
-					$('#payment-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
+                                    alert(json['error']['address_1']);
+//                                    $('#payment-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}	
 				
 				if (json['error']['city']) {
@@ -572,7 +577,7 @@ $('#button-guest').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/guest/validate',
 		type: 'post',
-		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address select'),
+		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'hidden\'], #payment-address input[type=\'checkbox\']:checked, #payment-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-guest').attr('disabled', true);
@@ -619,7 +624,8 @@ $('#button-guest').live('click', function() {
 				}	
 																		
 				if (json['error']['address_1']) {
-					$('#payment-address input[name=\'address_1\'] + br').after('<span class="error">' + json['error']['address_1'] + '</span>');
+                                    alert(json['error']['address_1']);
+                                    $('#payment-address input[name=\'address_1\'] + br').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}	
 				
 				if (json['error']['city']) {
