@@ -10,7 +10,16 @@
     <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
-  
+  <!-- loginza -->
+    
+    <h2><?php echo $text_enter_with_loginza; ?></h2>
+    <div style="margin:0 auto; border-top: 1px solid #eee;">
+            <script src="http://loginza.ru/js/widget.js" type="text/javascript"></script>
+            <iframe src="http://loginza.ru/api/widget?overlay=loginza&token_url=http%3A%2F%2Fdev.ska.com.ua%2Findex.php%3Froute%3Daccount%2Floginza" 
+style="width:359px;height:300px;" scrolling="no" frameborder="no"></iframe>
+    </div>
+    
+    <!-- loginza -->
   <p><?php echo $text_account_already; ?></p>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <h2><?php echo $text_your_details; ?></h2>

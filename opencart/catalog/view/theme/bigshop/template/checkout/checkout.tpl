@@ -6,7 +6,15 @@
     <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
+  <?php 
+        $logged = false;
+        if (isset($_SESSION['customer_id'])) {
+            $logged = true;
+        }
+  ?>
+  
   <div class="checkout">
+    
     <div id="checkout">
       <div class="checkout-heading"><?php echo $text_checkout_option; ?></div>
       <div class="checkout-content"></div>
@@ -56,7 +64,7 @@ $('.checkout-heading a').live('click', function() {
 	
 	$(this).parent().parent().find('.checkout-content').slideDown('slow');
 });
-<?php if (!$logged) { ?> 
+<?php if ($logged == false) { ?> 
 $(document).ready(function() {
 	$.ajax({
 		url: 'index.php?route=checkout/login',
@@ -64,9 +72,9 @@ $(document).ready(function() {
 		success: function(html) {
                         var n_data = $.parseJSON(html);
                         
-			$('#checkout .checkout-content').html(n_data['output']);
+			$('#payment-address .checkout-content').html(n_data['output']);
 				
-			$('#checkout .checkout-content').slideDown('slow');
+			$('#payment-address .checkout-content').slideDown('slow');
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -79,9 +87,8 @@ $(document).ready(function() {
 		url: 'index.php?route=checkout/payment_address',
 		dataType: 'html',
 		success: function(html) {
-			var n_data = $.parseJSON(html);
-                        
-			$('#checkout .checkout-content').html(n_data['output']);
+			
+			$('#payment-address .checkout-content').html(html);
 				
 			$('#payment-address .checkout-content').slideDown('slow');
 		},
@@ -345,7 +352,7 @@ $('#button-payment-address').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/payment_address/validate',
 		type: 'post',
-		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
+		data: $('#payment-address input[type=\'hidden\'], #payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-payment-address').attr('disabled', true);
@@ -388,7 +395,7 @@ $('#button-payment-address').live('click', function() {
 				}	
 														
 				if (json['error']['address_1']) {
-                                    alert(json['error']['address_1']);
+                                    
 //                                    $('#payment-address input[name=\'address_1\']').after('<span class="error">' + json['error']['address_1'] + '</span>');
 				}	
 				

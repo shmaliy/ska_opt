@@ -30,11 +30,20 @@ label { cursor: pointer; }
 #header { min-height:95px; position: relative; z-index: 99; background:#fff; padding:10px 0;}
 #header #logo { float:left; margin:10px 16px 0px 0px; }
 #header #welcome { color: #666; float:right; height:25px; line-height:25px; }
-#header #welcome a, #language, #currency { float:left; margin:0 7px; cursor:pointer; color:#666; text-decoration:none; text-transform:capitalize }
+#header #welcome a, #language, #currency {  margin:0 7px; cursor:pointer; color:#666; text-decoration:none; text-transform:capitalize }
 #language { float:left; position:relative ; background:url(../image/bullet-d.png) right center no-repeat; padding-right:10px}
 #language img { cursor: pointer; margin-right:3px; }
 #language ul, #currency ul, #header .links ul { display:none; }
-#language:hover ul, #currency:hover ul, #header .links:hover ul { display:block; position:absolute; top:25px; left:0; z-index:10; }
+
+#language:hover ul, 
+#currency:hover ul, 
+#header .links:hover ul { 
+    display:block; 
+    position:absolute; 
+    top:25px; 
+    left:0; 
+    z-index:10; 
+}
 #language ul li, #currency ul li, #header .links ul li { display:block; width:130px; }
 #header #welcome a:hover, #header .links:hover, #currency:hover, #language:hover { color:#F15A23; }
 #welcome ul { border:1px solid #ebe9e9; background:#f7f7f7; box-shadow:0 0px 5px rgba(0, 0, 0, 0.1); border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}

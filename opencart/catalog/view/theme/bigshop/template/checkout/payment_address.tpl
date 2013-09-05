@@ -18,7 +18,9 @@
 </p>
 <?php } ?>
 <div id="payment-new" style="display: <?php echo ($addresses) ? 'none' : 'block'; ?>;">
-  <table class="form">
+    <input type="hidden" name="company" value="" />
+    <input type="hidden" name="company_id" value="" />
+    <table class="form">
     <tr>
       <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
       <td><input type="text" name="firstname" value="" class="large-field" /></td>
@@ -27,19 +29,7 @@
       <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
       <td><input type="text" name="lastname" value="" class="large-field" /></td>
     </tr>
-    <tr>
-      <td><?php echo $entry_company; ?></td>
-      <td><input type="text" name="company" value="" class="large-field" /></td>
-    </tr>
-    <?php if ($company_id_display) { ?>
-    <tr>
-      <td><?php if ($company_id_required) { ?>
-        <span class="required">*</span>
-        <?php } ?>
-        <?php echo $entry_company_id; ?></td>
-      <td><input type="text" name="company_id" value="" class="large-field" /></td>
-    </tr>
-    <?php } ?>
+    
     <?php if ($tax_id_display) { ?>
     <tr>
       <td><?php if ($tax_id_required) { ?>
@@ -59,7 +49,7 @@
     </tr>
     <tr>
       <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-      <td><input type="text" name="city" value="" class="large-field" /></td>
+      <td><input type="text" name="city" value="Днепропетровск" disabled class="large-field" /></td>
     </tr>
     <tr>
       <td><span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
@@ -91,7 +81,8 @@
     <input type="button" value="<?php echo $button_continue; ?>" id="button-payment-address" class="button" />
   </div>
 </div>
-<script type="text/javascript"><!--
+<script type="text/javascript">
+
 $('#payment-address input[name=\'payment_address\']').live('change', function() {
 	if (this.value == 'new') {
 		$('#payment-existing').hide();
@@ -101,7 +92,7 @@ $('#payment-address input[name=\'payment_address\']').live('change', function() 
 		$('#payment-new').hide();
 	}
 });
-//--></script> 
+</script> 
 <script type="text/javascript"><!--
 $('#payment-address select[name=\'country_id\']').bind('change', function() {
 	$.ajax({
