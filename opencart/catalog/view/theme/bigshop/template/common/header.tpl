@@ -172,7 +172,7 @@ if ($this->config->get('bigshop_body_font') != '' ) {
 		<?php } ?>
 </style>
 
-<!-- http%3A%2F%2Fdev.ska.com.ua%2Findex.php%3Froute%3Daccount%2Floginza -->
+
 
 <?php } ?>
 <!-- RedHelper -->
@@ -191,6 +191,14 @@ if ($this->config->get('bigshop_body_font') != '' ) {
     <?php } else { ?>
     <?php echo $text_logged; ?>
     <?php } ?>    
+    
+    <a href="<?php echo $home; ?>"><?php echo $text_home; ?></a>
+    <a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a>
+    <a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
+
+    <a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a>
+
+    
   </div>
 <?php if ($logo) { ?>
  <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
@@ -206,7 +214,11 @@ if ($this->config->get('bigshop_body_font') != '' ) {
   
   <?php echo $cart; ?>
   <!--<div class="links"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a><a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></div>-->
+  <div id="town">
+        г. Днепропетровск, тел. (056) 370-20-21, (056) 370-22-02, (067) 564-63-84
+    </div>
 </div>
+    
 <?php if ($categories) { ?>
 <div id="menu">
 <span>Menu</span>
@@ -230,23 +242,18 @@ if ($this->config->get('bigshop_body_font') != '' ) {
       <?php } ?>
     </li>
     <?php } ?>
-    <?php 
-        $s_url = '/index.php?route=information/information&information_id=8'; 
-        $s_p_v_url = 'http://dev.ska.com.ua/index.php?route=information/information&information_id=9';
-        $bt_url = 'http://dev.ska.com.ua/index.php?route=information/information&information_id=10';
-        $c_url = 'http://dev.ska.com.ua/index.php?route=information/information&information_id=11';
-
-    ?>
+    <?php if (!empty($service_menu)) : ?>
     <li>
         <a href="#">Сервис-центр</a>
         <div>
             <ul>
-                <li><a href="<?php echo $s_p_v_url; ?>">Фото-видео</a></li>
-                <li><a href="<?php echo $bt_url; ?>">Бытовая техника</a></li>
-                <li><a href="<?php echo $c_url; ?>">Canon</a></li>
+            <?php foreach ($service_menu as $mitem): ?>
+                <li><a href="<?php echo $mitem['url']; ?>" style="text-transform: capitalize;"><?php echo $mitem['title']; ?></a></li>
+            <?php endforeach; ?>
             </ul>
         </div>
     </li>
+    <?php endif; ?>
   </ul>
 </div>
 <?php } ?>

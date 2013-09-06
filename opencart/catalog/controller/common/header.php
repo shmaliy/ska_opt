@@ -42,6 +42,14 @@ class ControllerCommonHeader extends Controller {
 						
 			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer);
 		}
+                
+                // Service center menu
+                $this->load->model('tool/service');
+                
+                $this->data['service_menu'] = $this->model_tool_service->servicemenu();
+                
+                //
+                
 				
 		$this->language->load('common/header');
 		

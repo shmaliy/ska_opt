@@ -20,10 +20,24 @@
       <?php foreach ($informations as $information) { ?>
       <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
       <?php } ?>
+      <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+      <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
+      <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
+      
+    </ul>
+  </div>
+  <div class="column">
+    <h3>Магазин</h3>
+    <ul>
+      <li><a href="/index.php?route=information/information&information_id=12">Оплата</a></li>
+      <li><a href="/index.php?route=information/information&information_id=13">Доставка</a></li>
+      <li><a href="/index.php?route=information/information&information_id=14">Кредит</a></li>
+      <li><a href="/index.php?route=information/information&information_id=15">Вакансии</a></li>
+      
     </ul>
   </div>
   <?php } ?>
-  <div class="column">
+  <!--<div class="column">
     <h3><?php echo $text_service; ?></h3>
     <ul>
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
@@ -39,7 +53,7 @@
       <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
       <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
     </ul>
-  </div>
+  </div>-->
   <div class="column">
     <h3><?php echo $text_account; ?></h3>
     <ul>
@@ -72,23 +86,6 @@
 <img src="catalog/view/theme/bigshop/template/information/function.php" height="1" width="1" />
 
 
-  <div class="social">
-        <?php if($this->config->get('bigshop_facebook_id') != '' || $this->config->get('bigshop_twitter_username') != '' || $this->config->get('bigshop_gplus_id') != '') { ?>
-        
-        <?php } ?>
-        <?php if($this->config->get('bigshop_facebook_id') != '') { ?>
-        <a href="http://facebook.com/<?php echo $this->config->get('bigshop_facebook_id'); ?>" target="_blank"> <img src="catalog/view/theme/bigshop/image/facebook.png" alt="Facebook" title="Facebook"></a>
-        <?php } ?>
-        <?php if($this->config->get('bigshop_twitter_username') != '') { ?>
-        <a href="https://twitter.com/#!/<?php echo $this->config->get('bigshop_twitter_username'); ?>" target="_blank"> <img src="catalog/view/theme/bigshop/image/twitter.png" alt="Twitter" title="Twitter"> </a>
-        <?php } ?>
-        <?php if($this->config->get('bigshop_gplus_id') != '') { ?>
-        <a href="https://plus.google.com/u/0/<?php echo $this->config->get('bigshop_gplus_id'); ?>" target="_blank"> <img src="catalog/view/theme/bigshop/image/gplus.png" alt="Google+" title="Google+"> </a>
-        <?php } ?>
-        <?php if($this->config->get('bigshop_pint_id') != '') { ?>
-        <a href="http://pinterest.com/<?php echo $this->config->get('bigshop_pint_id'); ?>" target="_blank"> <img src="catalog/view/theme/bigshop/image/pinterest.png" alt="Pinterest" title="Pinterest"> </a>
-        <?php } ?>
-      </div>
-  <div id="powered"><?php echo $powered; ?> &nbsp;|&nbsp; Theme By <a target="_blank" href="http://harnishdesign.net">Harnish Design</a></div>
+  
 </div>
 </body></html>
