@@ -248,7 +248,7 @@ if ($this->config->get('bigshop_body_font') != '' ) {
         <div>
             <ul>
             <?php foreach ($service_menu as $mitem): ?>
-                <li><a href="<?php echo $mitem['url']; ?>" style="text-transform: capitalize;"><?php echo $mitem['title']; ?></a></li>
+                <li><a href="<?php echo $mitem['url']; ?>"><?php echo trim($mitem['title'], ')'); ?></a></li>
             <?php endforeach; ?>
             </ul>
         </div>
