@@ -23,17 +23,21 @@
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
       <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
       <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-      
+      <?php if (!empty($col_one)) : ?>
+        <?php foreach ($col_one as $one_item) : ?>
+        <li><a href="<?php echo $one_item['url']; ?>"><?php echo trim($one_item['title'], ')'); ?></a></li>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </ul>
   </div>
   <div class="column">
     <h3>Магазин</h3>
     <ul>
-      <li><a href="/index.php?route=information/information&information_id=12">Оплата</a></li>
-      <li><a href="/index.php?route=information/information&information_id=13">Доставка</a></li>
-      <li><a href="/index.php?route=information/information&information_id=14">Кредит</a></li>
-      <li><a href="/index.php?route=information/information&information_id=15">Вакансии</a></li>
-      
+      <?php if (!empty($col_two)) : ?>
+        <?php foreach ($col_two as $two_item) : ?>
+        <li><a href="<?php echo $two_item['url']; ?>"><?php echo trim($two_item['title'], ')'); ?></a></li>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </ul>
   </div>
   <?php } ?>
@@ -61,6 +65,11 @@
       <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
       <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
       <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
+      <?php if (!empty($col_three)) : ?>
+        <?php foreach ($col_three as $three_item) : ?>
+        <li><a href="<?php echo $three_item['url']; ?>"><?php echo trim($three_item['title'], ')'); ?></a></li>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </ul>
   </div>
 
