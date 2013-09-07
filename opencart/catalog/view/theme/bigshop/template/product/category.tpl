@@ -83,7 +83,7 @@
         <?php } ?>
         <?php if ($product['tax']) { ?>
         <br />
-        <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
+        
         <?php } ?>
       </div>
       <?php } ?>
