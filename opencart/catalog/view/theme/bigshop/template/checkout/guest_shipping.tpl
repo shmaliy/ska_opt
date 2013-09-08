@@ -42,8 +42,7 @@
   </tr>
   <tr>
     <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-    <td><select name="zone_id" class="large-field">
-      </select></td>
+    <td><select name="zone_id" class="large-field"></select></td>
   </tr>
 </table>
 <br />
@@ -94,3 +93,4 @@ $('#shipping-address select[name=\'country_id\']').bind('change', function() {
 
 $('#shipping-address select[name=\'country_id\']').trigger('change');
 //--></script>
+

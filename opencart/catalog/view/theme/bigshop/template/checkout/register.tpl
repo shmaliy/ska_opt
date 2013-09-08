@@ -55,22 +55,27 @@
   <br />
 </div>
 <span class="required">*</span> <?php echo $entry_city; ?><br />
-<input type="text" name="city" value="Днепропетровск" disabled="disabled" class="large-field" />
+<input type="text" name="city" value="" class="large-field" />
 <br />
 <br />
 <span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?><br />
-<input type="text" name="postcode" value="49000" disabled="disabled" class="large-field" />
+<input type="text" name="postcode" value="" class="large-field" />
 <br />
 <br />
 <span class="required">*</span> <?php echo $entry_country; ?><br />
-<select name="country_id" class="large-field" disabled>
-    <option value="220" selected>Украина</option>
+<select name="country_id" class="large-field">
+  <option value=""><?php echo $text_select; ?></option>
+  <?php foreach ($countries as $country) { ?>
+  <?php if ($country['country_id'] == $country_id) { ?>
+  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+  <?php } else { ?>
+  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+  <?php } ?>
+  <?php } ?>
 </select>
 <br />
 <br />
-<select name="zone_id" class="large-field" disabled>
-    <option value="3484" selected>Днепропетровская</option>
-</select>
+<select name="zone_id" class="large-field"></select>
 <br />
 <br />
 <br />
@@ -142,7 +147,51 @@ $('#payment-address input[name=\'customer_group_id\']:checked').live('change', f
 
 $('#payment-address input[name=\'customer_group_id\']:checked').trigger('change');
 //--></script> 
+<script type="text/javascript"><!--
+$('#payment-address select[name=\'country_id\']').bind('change', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/checkout/country&country_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#payment-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+		},
+		complete: function() {
+			$('.wait').remove();
+		},			
+		success: function(json) {
+			if (json['postcode_required'] == '1') {
+				$('#payment-postcode-required').show();
+			} else {
+				$('#payment-postcode-required').hide();
+			}
+			
+			html = '<option value=""><?php echo $text_select; ?></option>';
+			
+			if (json['zone'] != '') {
 
+				for (i = 0; i < json['zone'].length; i++) {
+        			html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+	    			
+					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
+	      				html += ' selected="selected"';
+	    			}
+	
+	    			html += '>' + json['zone'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
+			
+			$('#payment-address select[name=\'zone_id\']').html(html);
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+
+$('#payment-address select[name=\'country_id\']').trigger('change');
+//--></script> 
 <script type="text/javascript"><!--
 $('.colorbox').colorbox({
 	width: 640,
